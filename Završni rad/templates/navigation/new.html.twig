@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Navigation{% endblock %}
+
+{% block body %}
+
+    {{ include('navigation/_form.html.twig') }}
+
+    <a href="{{ path('app_navigation_index') }}">back to list</a>
+{% endblock %}

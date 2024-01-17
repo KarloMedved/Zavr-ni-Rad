@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <style type="text/tailwindcss">
+            @layer utilities {
+                .content-auto {
+                    content-visibility: auto;
+                }
+            }
+        </style>
+
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+
+    <div class=" bg-gray-600" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; color: #fff;">
+        <ul style="list-style: none; display: flex; gap: 1rem;">
+            <li style="font-size: 1.1rem;"><a href="{{ path('app_homepage') }}">Homepage</a></li>
+            {% if navigations %}
+                {% for navigation in navigations %}
+                    <li style="font-size: 1.1rem;"><a href="{{ path('app_page_show', {'id': navigation.page.id}) }}">{{ navigation.name }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <form action="{{ path('app_logout') }}" method="post">
+        <button type="submit" class="btn text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none
+            focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600
+            dark:hover:bg-primary-700 dark:focus:ring-primary-800" style="padding:0.5rem 1rem; border-radius: 0.25rem; cursor: pointer;">Logout</button>
+    </form>
+    </div>
+
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
